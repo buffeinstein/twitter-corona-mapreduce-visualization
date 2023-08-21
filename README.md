@@ -1,9 +1,6 @@
 # Coronavirus twitter analysis
 
-You will scan all geotagged tweets sent in 2020 to monitor for the spread of the coronavirus on social media.
-
-**Learning Objectives:**
-
+I scanned all geotagged tweets sent in 2020 to monitor for the spread of the coronavirus on social media, to learn how to: 
 1. work with large scale datasets
 1. work with multilingual text
 1. use the MapReduce divide-and-conquer paradigm to create parallel code
@@ -25,7 +22,6 @@ Each text file contains a single tweet per line in JSON format.
 JSON is a popular format for storing data that is closely related to python dictionaries.
 
 Vim is able to open compressed zip files,
-and I encourage you to use vim to explore the dataset.
 For example, run the command
 ```
 $ vim /data/Twitter\ dataset/geoTwitter20-01-01.zip
@@ -37,14 +33,13 @@ $ unzip -p /data/Twitter\ dataset/geoTwitter20-01-01.zip | head -n1 | python3 -m
 
 **About MapReduce:**
 
-You will follow the [MapReduce](https://en.wikipedia.org/wiki/MapReduce) procedure to analyze these tweets.
+I followed the [MapReduce](https://en.wikipedia.org/wiki/MapReduce) procedure to analyze these tweets.
 MapReduce is a famous procedure for large scale parallel processing that is widely used in industry.
 It is a 3 step procedure summarized in the following image:
 
 <img src=mapreduce.png width=100% />
 
-I have already done the partition step for you (by splitting up the tweets into one file per day).
-You will have to do the map and reduce steps.
+The partition step was already done, so the tweets were seperated into one file per day).
 
 **MapReduce Runtime:**
 
@@ -73,13 +68,6 @@ It is currently not known which algorithms can be parallelized with MapReduce an
 Most computer scientists believe there are some algorithms which cannot be parallelized,
 but we don't yet have a proof that this is the case.
 
-## Background Tasks
-
-Complete the following tasks to familiarize yourself with the sample code:
-
-**Task 0: Setup**
-
-Fork this repo and clone it onto the lambda server.
 
 **Task 1: Map**
 
@@ -92,11 +80,7 @@ This command will take a few minutes to run as it is processing all of the tweet
 After the command finishes, you will now have a folder `outputs` that contains a file `/geoTwitter20-02-16.zip.lang`.
 This is a file that contains JSON formatted information summarizing the tweets from 16 February.
 
-> **NOTE:**
-> In previous labs, we combined the `unzip`, `grep`, and `jq` commands to analyze a single day of tweets.
-> These terminal commands are great for doing simple analysis,
-> but as the analysis becomes more complicated,
-> it becomes easier to switch to python instead of the shell.
+[Past lab experiences](https://github.com/mikeizbicki/lab-pipes-twitter/tree/38d6bf875e5cc0ee8ef8d6913bfff3702fffa79f) also helped me learn to navigate `unzip`, `grep`, and `jq`. 
 
 **Task 1b: Visualize**
 
@@ -150,121 +134,64 @@ Complete the following tasks:
 
 **Task 0: Create the mapper**
 
-Modify the `map.py` file so that it tracks the usage of the hashtags on both a language and country level.
+I Modified the `map.py` file so that it tracks the usage of the hashtags on both a language and country level.
 This will require creating a variable `counter_country` similar to the variable `counter_lang`, 
 and modifying this variable in the `#search hashtags` section of the code appropriately.
 The output of running `map.py` should be two files now, one that ends in `.lang` for the language dictionary (same as before),
 and one that ends in `.country` for the country dictionary.
 
-> **HINT:**
 > Most tweets contain a `place` key,
 > which contains a dictionary with the `country_code` key.
-> This is how you should lookup the country that a tweet was sent from.
+> This is how I was able to lookup the country that a tweet was sent from.
 > Some tweets, however, do not have a `country_code` key.
 > This can happen, for example, if the tweet was sent from international waters or the [international space station](https://web.archive.org/web/20220124224726/https://unistellaroptics.com/10-years-ago-today-the-first-tweet-was-sent-directly-from-space/).
-> Your code will have to be generic enough to handle edge cases similar to this without failing.
 
 **Task 1: Run the mapper**
 
-> **HINT:**
-> You should thoroughly test your `map.py` file on a single day's worth of tweets and verify that you are getting reasonable results before moving on to this step.
+> I thoroughly tested my `map.py` file on a single day's worth of tweets and verify that I was getting reasonable results before moving on to this step.
 
-Create a shell script called `run_maps.sh`.
+I then created a shell script called `run_maps.sh`.
 This file will loop over each file in the dataset and run the `map.py` command on that file.
-Each call to `map.py` can take up to a day to finish, so you should use the `nohup` command to ensure the program continues to run after you disconnect and the `&` operator to ensure that all `map.py` commands run in parallel.
+Each call to `map.py` can take up to a day to finish, so I used the `nohup` command to ensure the program continues to run after I disconnect and the `&` operator to ensure that all `map.py` commands run in parallel.
 
-> **HINT:**
-> Use the glob `*` to select only the tweets from 2020 and not all tweets.
+> I used the glob `*` to select only the tweets from 2020 and not all tweets.
 
 **Task 2: Reduce**
 
-> **HINT:**
-> You should manually inspect the output of your mapper code to ensure that it is reasonable and that you did not run into any error messages.
-> If you have errors above that you don't deal with,
-> then everything else below will be incorrect.
 
-After your modified `map.py` has run on all the files,
-you should have a large number of files in your `outputs` folder.
-Use the `reduce.py` file to combine all of the `.lang` files into a single file,
+After my modified `map.py` had run on all the files,
+I had a large number of files in my `outputs` folder.
+I then used the `reduce.py` file to combine all of the `.lang` files into a single file,
 and all of the `.country` files into a different file.
 
 **Task 3: Visualize**
 
-Recall that you can visualize your output files with the command
+Initially, I was visualizing my output files with the command
 ```
 $ ./src/visualize.py --input_path=PATH --key=HASHTAG
 ```
-Currently, this prints the top keys to stdout.
+This prints the top keys to stdout.
 
-Modify the `visualize.py` file so that it generates a bar graph of the results and stores the bar graph as a png file.
-The horizontal axis of the graph should be the keys of the input file,
-and the vertical axis of the graph should be the values of the input file.
-The final results should be sorted from low to high, and you only need to include the top 10 keys.
+I modified the `visualize.py` file so that it generates a bar graph of the results and stores the bar graph as a png file. The graphs are created with matplotlib. 
+The horizontal axis of the graph shows the keys of the input file,
+and the vertical axis of the graph shows the values of the input file.
+The final results are the top 10 keys, sorted from low to high.
 
-> **HINT:**
-> We are not covering how to create images from python code in this class.
-> I recommend you use the matplotlib library,
-> and you can find some samples to base your code off of [in the documentation here](https://matplotlib.org/3.1.1/tutorials/introductory/sample_plots.html).
 
-Then, run the `visualize.py` file with the `--input_path` equal to both the country and lang files created in the reduce phase, and the `--key` set to `#coronavirus` and `#코로나바이러스`.
-This should generate four plots in total.
+I ran the `visualize.py` file with the `--input_path` equal to both the country and lang files created in the reduce phase, and the `--key` set to `#coronavirus` and `#코로나바이러스`.
+This generated four plots in total.
 
 **Task 4: Alternative Reduce**
 
-Create a new file `alternative_reduce.py`.
-This file should take as input on the command line a list of hashtags,
-and output a line plot where:
+I also creatde a new file `alternative_reduce.py`.
+This file take as input - the command line a list of hashtags,
+and output - a line plot where:
 1. There is one line per input hashtag.
 1. The x-axis is the day of the year.
 1. The y-axis is the number of tweets that use that hashtag during the year.
 
-Your `alternative_reduce.py` file have to follow a similar structure to a combined version of the `reduce.py` and `visualize.py` files.
-First, you will scan through all of the data in the `outputs` folder created by the mapping step.
-In this scan, you will construct a dataset that contains the information that you need to plot.
-Then, after you have extracted this information,
-you should call the appropriate matplotlib functions to plot the data.
+My`alternative_reduce.py` file follows a similar structure to a combined version of the `reduce.py` and `visualize.py` files.
+I scanned through all of the data in the `outputs` folder created by the mapping step.
+In this scan, the code was able to construct a dataset that contains the information needed for the plot.
 
-> **HINT:**
-> The specifications for this program and plot are intentionally underspecified
-> (similar to how many real-world problems are underspecified).
-> Feel free to ask clarifying questions.
-
-**Task 5: Uploading**
-
-Commit all of your code and images output files to your github repo and push the results to github.
-You must:
-1. Delete the current contents of the `README.md` file
-1. Insert into the `README.md` file a brief explanation of your project, including the 4 generated png files.
-    This explanation should be suitable for a future employer to look at while they are interviewing you to get a rough idea of what you accomplished.
-    (And you should tell them about this in your interviews!)
-
-## Submission
-
-Upload a link to you github repository on sakai.
-I will look at your code and visualization to determine your grade.
-
-**Grading:**
-
-The assignment is worth 32 points:
-
-1. 8 points for getting the map/reduce to work
-1. 8 points for your repo/readme file
-1. 8 points for Task 3 plots
-1. 8 points for Task 4 plots
-
-The most common ways to miss points are:
-1. having incorrect data plotted (because the map program didn't finish running on all of the inputs)
-1. having illegible plots that are not "reasonably" formatted
-
-Notice that we are not using CI to grade this assignment.
-There's two reasons:
-
-1. You can get slightly different numbers depending on some of the design choices you make in your code.
-    For example, should the term `corona` count tweets that contain `coronavirus` as well as tweets that contain just `corona`?
-    These are relatively insignificant decisions.
-    I'm more concerned with your ability to write a shell script and use `nohup`, `&`, and other process control tools effectively.
-
-1. The dataset is too large to upload to github actions.
-    In general, writing test cases for large data analysis tasks is tricky and rarely done.
-    Writing correct code without test cases is hard,
-    and so many (most?) analysis of large datasets contain lots of bugs.
+Done!
