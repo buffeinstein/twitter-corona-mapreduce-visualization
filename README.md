@@ -195,7 +195,5 @@ My`alternative_reduce.py` file follows a similar structure to a combined version
 I scanned through all of the data in the `outputs` folder created by the mapping step.
 In this scan, the code was able to construct a dataset that contains the information needed for the plot. 
 
-See all graphs below: 
-
-
-Done!
+International Daily Use of #corona #doctor in 2020
+<img src='daily_use_of_#corona#doctor2.png' width=70% />
