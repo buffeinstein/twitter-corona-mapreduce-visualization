@@ -1,4 +1,4 @@
-#!/usr/bin/env python3:
+#!/usr/bin/env python
 
 #SOME CONTEXT 
 #server = YEAR = 2020
