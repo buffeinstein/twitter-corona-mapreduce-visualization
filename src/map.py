@@ -35,7 +35,7 @@ import json
 from collections import Counter,defaultdict
 
 # load keywords
-hashtags = ['#swag','#slay', '#cheugy' '#fire']
+hashtags = ['#swag','#slay', '#cheugy', '#fire']
 
 
 # initialize counters

@@ -16,7 +16,11 @@ from collections import Counter,defaultdict
 total = defaultdict(lambda: Counter())
 for path in args.input_paths:
     with open(path) as f:
+        # python dictionaries are the same format as json files
+        # thus, we can load it as a json file 
         tmp = json.load(f)
+
+        # and merge counters
         for k in tmp:
             total[k] += tmp[k]
 

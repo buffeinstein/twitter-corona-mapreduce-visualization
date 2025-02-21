@@ -30,42 +30,28 @@ if args.percent:
 # print the count values
 items = sorted(counts[args.key].items(), key=lambda item: (item[1],item[0]), reverse=True)
 
-languages = [item[0] for item in items[:10]]  # Take the first 10 languages
+x_var = [item[0] for item in items[:10]]  # Take the first 10 languages
+
 counts = [item[1] for item in items[:10]]  # Take the corresponding counts
 
-languages.reverse()
+x_var.reverse()
 counts.reverse() 
-#
-#print ('lang=', languages)
-#print ('counts=', counts) 
-#
+
+
+if path[-4:] == 'lang':
+    label = 'Languages'
+else: 
+    label = 'Countries'
+
 # Create a vertical bar graph
-plt.bar(range(len(languages)), counts, tick_label=languages)
-
-'''
-items = items[:10]
-items.reverse()
-
-plt.bar([item[0] for item in items[:10]], [item[1] for item in items[:10]])
-'''
-plt.xlabel('Languages')
+plt.bar(range(len(x_var)), counts, tick_label=x_var)
+plt.xlabel(label)
 plt.ylabel('Counts')
-plt.title('Top 10 countries that used ' + args.key + ' in 2020')  
+plt.title('Top 10 languages That Used ' + args.key + ' In 2019')  
 plt.xticks(rotation=45)  # Rotate x-axis labels for better visibility
 plt.tight_layout()
 
 tag = args.key[1:]
 # Display the plot
-if path[-4:] == 'lang':
-    plt.savefig(tag + 'language_count.png', format='png')  # Save as PNG image
-else:
-    plt.savefig(tag + 'country_count.png', format='png')
+plt.savefig(tag + label  +'Count.png', format='png')  # Save as PNG image
 
-#print (type(items))
-#print (items)
-#print (items[1])
-#print (type(items[1]))
-#
-#for k,v in items[:10]:
-#    print(k,':',v)
-#
