@@ -311,16 +311,20 @@ $ ./src/visualize.py --input_path=reduced.lang --key='#cheugy'
  This generated four plots in total, see below! 
 
 Top 10 countries that used #fire in 2019
-<img src='fireCountriesCount.png' width=70% />
+
+<img src='fireCountriesCount.png' width=50% />
 
 Top 10 languages that used #fire in 2019
-<img src='fireLanguagesCount.png' width=70% />
+
+<img src='fireLanguagesCount.png' width=50% />
 
 Top 10 countries that used #slay in 2019
-<img src='slayCountriesCount.png' width=70% />
+
+<img src='slayCountriesCount.png' width=50% />
 
 Top 10 languages that used #slay in 2019
-<img src='slayLanguagesCount.png' width=70% />
+
+<img src='slayLanguagesCount.png' width=50% />
 
 
 # Task 4: Alternative Reduce
@@ -329,8 +333,7 @@ I also created a new file `alternative_reduce.py`, which is a combined version o
 ```
 
 ```
-International Daily Use of #fire #swag in 19:
-<img src='daily_use_of_#corona#doctor2.png' width=70% />
+International Daily Use of #fire #swag #slay in 2019:
 
 
 **About MapReduce:**
