@@ -132,3 +132,5 @@ dmypy.json
 *.swo 
 *.swp
 /outputs
+nohup.out
+
