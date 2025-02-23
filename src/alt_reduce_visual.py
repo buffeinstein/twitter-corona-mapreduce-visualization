@@ -32,7 +32,7 @@ for tag in args.keys:
     tags += str(tag)
 
 # Configure plot details
-ax.set_xlabel('Year of 2020')
+ax.set_xlabel('Year of 2019')
 ax.set_ylabel('Amount Of Tweets With Hashtag')
 ax.set_title('International Daily Use Of'+tags)
 
@@ -41,20 +41,3 @@ ax.legend()
 plt.savefig('daily_use_of_'+tags+'2.png')
 
 
-#input_paths = the paths in outputs (select with *.lang or *.zip)
-#keys = hashtags
-
-#items is a list, with tuples in each index.
-#the tuple has (language/country, count)
-
-#reduced.lang and reduced.country is what we were running visualize.py on
-#which separates the reducing steps and the visualizing step
-#creating a bar graph that depicts the final information from the whole year
-
-#but now, we want a line chart that shows the progress of the use of the hashtag
-#which requires day-by-day analysis
-#and thus we cannot separate the reduce and visualize steps the same way
-
-#instead, we will open up all the .lang files in the outputs folder
-#and extract the use of the hashtag
-#nad extract the use of the hashtag
