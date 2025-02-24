@@ -331,10 +331,11 @@ Top 10 languages that used #slay in 2019
 
 I also created a new file `alternative_reduce.py`, which is a combined version of the `reduce.py` and `visualize.py` files to create a line graph instead of a bar graph with 
 ```
-
+python3 src/alt_reduce_visual.py --input_paths reduced.country reduced.lang --keys '#fire' '#slay' '#swag'
 ```
 International Daily Use of #fire #swag #slay in 2019:
 
+<img src='daily_use_of_#fire#slay#swag2.png' width=50% />
 
 **About MapReduce:**
 
