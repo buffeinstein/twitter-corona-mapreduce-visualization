@@ -335,7 +335,7 @@ python3 src/alt_reduce_visual.py --input_paths reduced.country reduced.lang --ke
 ```
 International Daily Use of #fire #swag #slay in 2019:
 
-<img src=daily_use_of_#fire#slay#swag3.png width=50% />
+<img src='daily_use_of_#fire#slay#swag3.png' width=50% />
 
 **About MapReduce:**
 
