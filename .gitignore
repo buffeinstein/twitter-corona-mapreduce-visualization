@@ -131,6 +131,7 @@ dmypy.json
 # vim
 *.swo 
 *.swp
+*.swn
 /outputs
 nohup.out
-
+bug.txt
