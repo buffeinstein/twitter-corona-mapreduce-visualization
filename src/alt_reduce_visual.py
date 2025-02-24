@@ -20,8 +20,8 @@ for path in args.input_paths:
         for k in tmp:
             print ("k =", k)
             if k in args.keys:
-                print ("total[k][path] =", total[k][path])
-                total[k][path] += sum(tmp[k].values())
+                print ("total[k][path] =", total[k][path[21:26]])
+                total[k][path[21:26]] += sum(tmp[k].values())
 
 print("total:", total)
 
