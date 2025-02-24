@@ -343,7 +343,7 @@ I followed the [MapReduce](https://en.wikipedia.org/wiki/MapReduce) procedure to
 MapReduce is a famous procedure for large scale parallel processing that is widely used in industry.
 It is a 3 step procedure summarized in the following image:
 
-<img src=mapreduce.png width=100% />
+<img src=mapreduce.png width=50% />
 
 This post will not go over the partition step, which seperated the tweets into a file per day. 
 
